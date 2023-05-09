@@ -20,6 +20,8 @@ import { RatingModule } from 'primeng/rating';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
+import { CarouselModule } from 'primeng/carousel';
+import { TagModule } from 'primeng/tag';
 
 // Components
 import { HomeComponent } from './home/home.component';
@@ -57,7 +59,9 @@ import { ContactComponent } from './contact/contact.component';
     RatingModule,
     ToolbarModule,
     MenubarModule,
-    CardModule
+    CardModule,
+    CarouselModule,
+    TagModule
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]

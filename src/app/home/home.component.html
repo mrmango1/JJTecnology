@@ -1,1 +1,20 @@
-<p>home works!</p>
+<p-carousel [value]="products" [numVisible]="3" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+  <ng-template let-product pTemplate="item">
+      <div class="product-item">
+          <div class="product-item-content">
+              <div class="mb-3">
+                  <img src="{{ product.images[0] }}" [alt]="product.title" class="product-image" />
+              </div>
+              <div>
+                  <h4 class="mb-1">{{ product.title }}</h4>
+                  <h6 class="mt-0 mb-3">{{ '$' + product.price }}</h6>
+                  <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatusclear)"></p-tag>
+                  <div class="car-buttons mt-5">
+                      <p-button type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search"></p-button>
+                      <p-button type="button" styleClass="p-button-success p-button-rounded mr-2" icon="pi pi-star-fill"></p-button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </ng-template>
+</p-carousel>
