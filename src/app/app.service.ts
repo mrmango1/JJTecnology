@@ -11,19 +11,40 @@ import { Products, ProductsResponse } from './app.types'
 export class AppService {
   API_URL = 'https://dummyjson.com'
 
-  private _products: BehaviorSubject<ProductsResponse> = new BehaviorSubject<ProductsResponse>({products: [], total: 0, skip: 0, limit: 0})
+  private _productsResponse: BehaviorSubject<ProductsResponse> = new BehaviorSubject<ProductsResponse>({ products: [], total: 0, skip: 0, limit: 0 })
+  private _products: BehaviorSubject<Products[]> = new BehaviorSubject<Products[]>([])
 
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) { }
 
-  get products$(): Observable<ProductsResponse> {
+  get productsResponse$(): Observable<ProductsResponse> {
+    return this._productsResponse.asObservable()
+  }
+
+  get products$(): Observable<Products[]> {
     return this._products.asObservable()
   }
 
-  getProducts(): Observable<ProductsResponse> {
-    return this._httpClient.get<ProductsResponse>(`${this.API_URL}/products`)
+  getProducts(limit: number = 0, skip: number = 0, select: string = ''): Observable<ProductsResponse> {
+    let params = new HttpParams()
+      .set('limit', limit)
+      .set('skip', skip)
+      if(select.length > 0){
+        params = params.set('select', select)
+      }
+    return this._httpClient.get<ProductsResponse>(`${this.API_URL}/products`,{params})
       .pipe(
         tap((response) => {
-          this._products.next(response)
+          this._products.next(response.products)
+          this._productsResponse.next(response)
+        })
+      )
+  }
+  getProductsByCategory(category: string): Observable<ProductsResponse> {
+    return this._httpClient.get<ProductsResponse>(`${this.API_URL}/products/category/${category}`)
+      .pipe(
+        tap((response) => {
+          this._products.next(response.products)
+          this._productsResponse.next(response)
         })
       )
   }
