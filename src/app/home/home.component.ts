@@ -13,8 +13,8 @@ export class HomeComponent {
   constructor(private _appService: AppService) { }
   ngOnInit(): void {
 
-    this._appService.getProducts(8).subscribe((data: ProductsResponse) => {
-      this.products = data.products;
+    this._appService.products$.subscribe((products: Products[]) => {
+      this.products = products;
     });
 
     this.responsiveOptions = [

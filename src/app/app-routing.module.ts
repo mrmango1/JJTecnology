@@ -6,9 +6,15 @@ import { OffersComponent } from './offers/offers.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductsResolver } from './products/products.resolver';
+import { HomeResolver } from './home/home.resolver';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home',
+    component: HomeComponent,
+    resolve: {
+      homeResolver: HomeResolver
+    }
+  },
   { path: 'products',
     component: ProductsComponent,
     children: [
