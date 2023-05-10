@@ -10,10 +10,10 @@ import { AppService } from '../app.service';
 export class HomeComponent {
   responsiveOptions: ResponsiveOptions[] = [];
   products: Products[] = [];
-  constructor(private _appService: AppService) {}
+  constructor(private _appService: AppService) { }
   ngOnInit(): void {
 
-    this._appService.getProducts().subscribe((data: ProductsResponse) => {
+    this._appService.getProducts(8).subscribe((data: ProductsResponse) => {
       this.products = data.products;
     });
 
@@ -38,7 +38,7 @@ export class HomeComponent {
 
   getSeverity(stock: number) {
     switch (true) {
-      case stock > 20:
+      case stock > 50:
         return 'success';
       case stock > 0:
         return 'warning';
@@ -46,6 +46,19 @@ export class HomeComponent {
         return 'danger';
       default:
         return 'danger';
+    }
+  }
+
+  getStatus(stock: number) {
+    switch (true) {
+      case stock > 50:
+        return 'En stock';
+      case stock > 0:
+        return 'Stock limitado';
+      case stock === 0:
+        return 'Sin stock';
+      default:
+        return 'Sin stock';
     }
   }
 }

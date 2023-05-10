@@ -1,14 +1,16 @@
-<p-carousel [value]="products" [numVisible]="3" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+<p class="text-center text-3xl">El mejor lugar para disfrutar</p>
+<p class="text-center font-bold text-4xl">La mayor variedad en tecnología</p>
+<p-carousel [value]="products" [numVisible]="4" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [showIndicators]="false" autoPlayInterval="300">
   <ng-template let-product pTemplate="item">
       <div class="product-item">
-          <div class="product-item-content">
+          <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
               <div class="mb-3">
-                  <img src="{{ product.images[0] }}" [alt]="product.title" class="product-image" />
+                  <img [src]="product.images[0]" [alt]="product.title" class="h-14rem" />
               </div>
               <div>
                   <h4 class="mb-1">{{ product.title }}</h4>
                   <h6 class="mt-0 mb-3">{{ '$' + product.price }}</h6>
-                  <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatusclear)"></p-tag>
+                  <p-tag [value]="getStatus(product.stock)" [severity]="getSeverity(product.stock)"></p-tag>
                   <div class="car-buttons mt-5">
                       <p-button type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search"></p-button>
                       <p-button type="button" styleClass="p-button-success p-button-rounded mr-2" icon="pi pi-star-fill"></p-button>

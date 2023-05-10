@@ -23,22 +23,22 @@ export class NavbarComponent implements OnInit {
                 {
                     label: 'Todos',
                     icon: 'pi pi-fw pi-align-left',
-                    routerLink: '/products',
+                    routerLink: '/products/0',
                 },
                 {
                     label: 'Celulares',
                     icon: 'pi pi-fw pi-align-right',
-                    routerLink: '/products',
+                    routerLink: '/products/smartphones',
                 },
                 {
                     label: 'Laptops',
                     icon: 'pi pi-fw pi-align-center',
-                    routerLink: '/products',
+                    routerLink: '/products/laptops',
                 },
                 {
                     label: 'Accesorios',
                     icon: 'pi pi-fw pi-align-justify',
-                    routerLink: '/products',
+                    routerLink: '/products/furniture',
                 }
             ]
         },
