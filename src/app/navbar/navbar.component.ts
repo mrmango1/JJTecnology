@@ -13,48 +13,48 @@ export class NavbarComponent implements OnInit {
     this.items = [
         {
             label: 'Inicio',
-            icon: 'pi pi-fw pi-file',
+            icon: 'pi pi-fw pi-home',
             routerLink: '/home'
         },
         {
             label: 'Productos',
-            icon: 'pi pi-fw pi-pencil',
+            icon: 'pi pi-shopping-cart',
             items: [
                 {
                     label: 'Todos',
-                    icon: 'pi pi-fw pi-align-left',
+                    icon: 'pi pi-fw pi-wallet',
                     routerLink: '/products/0',
                 },
                 {
                     label: 'Celulares',
-                    icon: 'pi pi-fw pi-align-right',
+                    icon: 'pi pi-fw pi-phone',
                     routerLink: '/products/smartphones',
                 },
                 {
                     label: 'Laptops',
-                    icon: 'pi pi-fw pi-align-center',
+                    icon: 'pi pi-fw pi-apple',
                     routerLink: '/products/laptops',
                 },
                 {
                     label: 'Accesorios',
-                    icon: 'pi pi-fw pi-align-justify',
+                    icon: 'pi pi-fw pi-camera',
                     routerLink: '/products/furniture',
                 }
             ]
         },
         {
             label: 'Ofertas',
-            icon: 'pi pi-fw pi-user',
+            icon: 'pi pi-fw pi-tags',
             routerLink: '/offers',
         },
         {
             label: 'Nosotros',
-            icon: 'pi pi-fw pi-calendar',
+            icon: 'pi pi-fw pi-users',
             routerLink: '/about',
         },
         {
           label: 'Contacto',
-          icon: 'pi pi-fw pi-power-off',
+          icon: 'pi pi-fw pi-building',
           routerLink: '/contact',
       }
     ];
