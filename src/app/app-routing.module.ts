@@ -7,6 +7,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductsResolver } from './products/products.resolver';
 import { HomeResolver } from './home/home.resolver';
+import { OffersResolver } from './offers/offers.resolver';
 
 const routes: Routes = [
   { path: 'home',
@@ -27,7 +28,12 @@ const routes: Routes = [
       },
     ] 
   },
-  { path: 'offers', component: OffersComponent },
+  { path: 'offers',
+    component: OffersComponent,
+    resolve: {
+      offersResolver: OffersResolver
+    }
+   },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: '',   redirectTo: 'home', pathMatch: 'full' },

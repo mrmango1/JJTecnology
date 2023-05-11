@@ -2,6 +2,11 @@
 @import "primeng/resources/primeng.css";
 @import 'node_modules/primeflex/primeflex.css';
 @import "primeicons/primeicons.css";
+@import "~leaflet/dist/leaflet.css";
 body {
   font-family: var(--font-family);
+}
+.map-container {
+  height: 80vh;
+  width: 50vw;
 }

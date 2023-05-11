@@ -1,1 +1,8 @@
-<p>contact works!</p>
+<div class="grid gap-6 pt-4 justify-content-center">
+  <p class="text-3xl font-semibold text-center">Encuentranos Aqui!</p>
+</div>
+<div class="grid justify-content-center p-6">
+  <div class="map-container" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"
+  (leafletClick)="mapClicked($event)">
+</div>
+</div>
