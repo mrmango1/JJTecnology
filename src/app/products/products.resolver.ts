@@ -35,7 +35,6 @@ export class ProductsResolver implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable< ProductsResponse > {
-    console.log(route.paramMap.get('type'))
     const type = Number(route.paramMap.get('type'))
     if(isNaN(type)){
       return this._appService
