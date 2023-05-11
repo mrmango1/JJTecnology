@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
                 {
                     label: 'Todos',
                     icon: 'pi pi-fw pi-wallet',
-                    routerLink: '/products/0',
+                    routerLink: '/products',
                 },
                 {
                     label: 'Celulares',
