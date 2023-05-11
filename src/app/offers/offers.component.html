@@ -1,1 +1,20 @@
-<p>offers works!</p>
+<p class="text-3xl font-semibold text-center">Contamos con ofertas en celulares!</p>
+<div class="grid gap-6 p-6 justify-content-center">
+  <ng-container *ngIf="products$ | async as products">
+    <ng-container
+            *ngFor="let product of products; let i = index">
+            <p-card [header]="product.title" [subheader]="getDiscountedPrice(product)" [style]="{ width: '360px' }">
+              <ng-template pTemplate="header">
+                  <img alt="Card" class="w-auto h-14rem" style="max-width: 360px;" [src]="product.images[0]" />
+              </ng-template>
+              <p>
+                {{ product.description }}
+              </p>
+              <ng-template pTemplate="footer">
+                  <p-button label="Ver" icon="pi pi-search"></p-button>
+                  <p-button label="Añadir al carrito" icon="pi pi-cart-plus" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+              </ng-template>
+            </p-card>
+          </ng-container>
+  </ng-container>
+</div>
