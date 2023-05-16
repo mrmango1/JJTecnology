@@ -1,0 +1,89 @@
+<div class="card">
+  <p-table [value]="products" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Products
+        <p-button (click)="showDialog()" icon="pi pni-external-lik" label="Crear"></p-button>
+        <p-button (click)="refreshData()" icon="pi pi-refresh"></p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Reviews</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{product.title}}</td>
+        <td><img [src]="product.images[0]" [alt]="product.title" width="100" class="shadow-4" /></td>
+        <td>{{product.price | currency:'USD'}}</td>
+        <td>{{product.category}}</td>
+        <td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+        <td><p-tag [value]="getStatus(product.price)" [severity]="getSeverity(product.price)"></p-tag></td>
+        <td>
+          <p-button (click)="deleteProduct(product)" styleClass="p-button-danger" icon="pi pni-trash"
+            label="Eliminar"></p-button>
+          <p-button (click)="showDialog(product)" styleClass="p-button-success" icon="pi pni-external-lik"
+            label="Actualizar"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{products ? products.length : 0 }} products.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog header="Mantenimiento Producto" [(visible)]="visible" [modal]="true" [style]="{ width: '45vw' }"
+  [draggable]="false" [resizable]="false">
+  <div class="flex flex-column gap-4 pt-4 justify-content-center">
+    <span class="p-float-label align-self-center">
+      <input type="text" placeholder='Nombre' pInputText [(ngModel)]="tempProduct.title" />
+      <label>Nombre</label>
+    </span>
+    <span class="p-float-label align-self-center">
+      <textarea type="text" placeholder='Descripcion' pInputText [(ngModel)]="tempProduct.description"></textarea>
+      <label>Descripcion</label>
+    </span>
+    <span class="p-float-label align-self-center">
+      <p-inputNumber mode="currency" currency="USD" placeholder='Precio'  [(ngModel)]="tempProduct.price" ></p-inputNumber>
+      <label>Precio</label>
+    </span>
+    <span class="p-float-label align-self-center">
+      <p-inputNumber placeholder='Descuento' prefix="%" [(ngModel)]="tempProduct.discountPercentage" ></p-inputNumber>
+      <label>Porcentaje de Descuento</label>
+    </span>
+    <span class="p-float-label align-self-center">
+      <p-inputNumber placeholder='Cantidad'  suffix=" unidades" [(ngModel)]="tempProduct.stock" ></p-inputNumber>
+      <label>Cantidad</label>
+    </span>
+    <span class="p-float-label align-self-center">
+      <input type="text" placeholder='Rating' pInputText [(ngModel)]="tempProduct.rating" />
+      <label>Rating</label>
+    </span>
+    <span class="p-float-label align-self-center">
+      <input type="text" placeholder='Categoria' pInputText [(ngModel)]="tempProduct.category" />
+      <label>Categoria</label>
+    </span>
+    <span class="p-float-label align-self-center">
+      <input type="text" placeholder='Marca' pInputText [(ngModel)]="tempProduct.brand" />
+      <label>Marca</label>
+    </span>
+    <span class="p-float-label align-self-center">
+      <input type="text" placeholder='Imagen' pInputText [(ngModel)]="tempProduct.images[0]" />
+      <label>Imagen</label>
+    </span>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancel" (click)="visible = false" styleClass="p-button-danger"></p-button>
+    <p-button label="Ok" (click)="action()" styleClass="p-button-success"></p-button>
+  </ng-template>
+</p-dialog>

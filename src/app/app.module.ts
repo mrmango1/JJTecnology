@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // PrimeNG Components
 import { InputTextModule } from 'primeng/inputtext';
@@ -31,6 +32,7 @@ import { ProductsComponent } from './products/products.component';
 import { OffersComponent } from './offers/offers.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { InventaryComponent } from './inventary/inventary.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { ContactComponent } from './contact/contact.component';
     ProductsComponent,
     OffersComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    InventaryComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { ContactComponent } from './contact/contact.component';
     CardModule,
     CarouselModule,
     TagModule,
-    LeafletModule
+    LeafletModule,
+    BrowserAnimationsModule
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]
