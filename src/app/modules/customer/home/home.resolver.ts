@@ -6,13 +6,13 @@ import {
   RouterStateSnapshot,
 } from '@angular/router'
 import { catchError, Observable, throwError } from 'rxjs'
-import { AppService } from '../app.service';
-import { ProductsResponse } from '../app.types';
+import { AppService } from '../customer.service';
+import { Product } from '../../../core/config/types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class OffersResolver implements Resolve<any> {
+export class HomeResolver implements Resolve<any> {
   /**
    * Constructor
    */
@@ -34,9 +34,9 @@ export class OffersResolver implements Resolve<any> {
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable< ProductsResponse > {
+  ): Observable<Product[]> {
       return this._appService
-      .getProductsByCategory("smartphones")
+      .getProducts()
       .pipe(
         catchError(error => {
           console.error(error)

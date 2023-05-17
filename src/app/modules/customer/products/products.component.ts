@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AppService } from '../app.service';
-import { Products } from '../app.types';
+import { AppService } from '../customer.service';
+import { Product } from '../../../core/config/types';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,12 +9,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
-  products$: Observable<Products[]> = this._appService.products$;
-  products: Products[] = [];
+  products$: Observable<Product[]> = this._appService.products$;
+  products: Product[] = [];
   constructor(private _appService: AppService) { }
   ngOnInit(): void {
 
-    this._appService.products$.subscribe((products: Products[]) => {
+    this._appService.products$.subscribe((products: Product[]) => {
       this.products = products;
     }
     );

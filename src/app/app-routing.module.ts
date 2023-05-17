@@ -1,50 +1,38 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ProductsComponent } from './products/products.component';
-import { OffersComponent } from './offers/offers.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
-import { InventaryComponent } from './inventary/inventary.component';
-import { ProductsResolver } from './products/products.resolver';
-import { HomeResolver } from './home/home.resolver';
-import { OffersResolver } from './offers/offers.resolver';
-import { InventaryResolver } from './inventary/inventary.resolver';
+import { NotfoundComponent } from './modules/notfound/notfound.component';
+import { CustomerComponent } from './modules/customer/customer.component';
 
 const routes: Routes = [
-  { path: 'home',
-    component: HomeComponent,
-    resolve: {
-      homeResolver: HomeResolver
-    }
-  },
-  { path: 'products',
-    component: ProductsComponent,
+  {
+    path: '',
+    // canActivate: [AuthGuard],
+    // canActivateChild: [AuthGuard],
+    component: CustomerComponent,
+    // resolve: {
+    //   initialData: InitialDataResolver,
+    // },
     children: [
       {
-        path: ':type',
-        component: ProductsComponent,
-        resolve: {
-          productsResolver: ProductsResolver
-        }
+        path: '', loadChildren: () => import('src/app/modules/customer/customer.module').then(m => m.CustomerModule)
       },
     ]
   },
-  { path: 'offers',
-    component: OffersComponent,
-    resolve: {
-      offersResolver: OffersResolver
-    }
-   },
-  { path: 'inventory',
-    component: InventaryComponent,
-    resolve: {
-      inventaryResolver: InventaryResolver
-    }
-   },
-  { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: '',   redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: '',
+    // canActivate: [AuthGuard],
+    // canActivateChild: [AuthGuard],
+    // component: CustomerComponent,
+    // resolve: {
+    //   initialData: InitialDataResolver,
+    // },
+    children: [
+      { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
+    ]
+  },
+  { path: 'notfound', component: NotfoundComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/notfound' },
 ];
 
 @NgModule({

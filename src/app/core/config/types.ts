@@ -1,4 +1,12 @@
-export interface Products {
+export interface User {
+    id: number;
+    name: string;
+    email: string;
+    password: string;
+    role: string;
+}
+
+export interface Product {
     id: number;
     title: string;
     description: string;
@@ -10,13 +18,6 @@ export interface Products {
     category: string;
     thumbnail: string;
     images: string[];
-}
-
-export interface ProductsResponse {
-  products: Products[];
-  total: number;
-  skip: number;
-  limit: number;
 }
 
 export interface ResponsiveOptions {

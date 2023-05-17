@@ -1,30 +1,25 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { BehaviorSubject, Observable, tap, of } from 'rxjs'
-import { Products, ProductsResponse } from '../app.types'
+import { Product } from 'src/app/core/config/types'
+import { API_URL } from 'src/app/core/config/endpoints'
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class InventaryService {
-  API_URL = 'http://localhost:3000/products'
 
-  private _productsResponse: BehaviorSubject<ProductsResponse> = new BehaviorSubject<ProductsResponse>({ products: [], total: 0, skip: 0, limit: 0 })
-  private _products: BehaviorSubject<Products[]> = new BehaviorSubject<Products[]>([])
+  private _products: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([])
 
   constructor(private _httpClient: HttpClient) { }
 
-  get productsResponse$(): Observable<ProductsResponse> {
-    return this._productsResponse.asObservable()
-  }
-
-  get products$(): Observable<Products[]> {
+  get products$(): Observable<Product[]> {
     return this._products.asObservable()
   }
 
-  getProducts(): Observable<Products[]> {
-    return this._httpClient.get<Products[]>(this.API_URL)
+  getProducts(): Observable<Product[]> {
+    return this._httpClient.get<Product[]>(`${API_URL}/products`)
       .pipe(
         tap((response) => {
           this._products.next(response)
@@ -32,8 +27,8 @@ export class InventaryService {
       )
   }
 
-  createProduct(product: Products): Observable<Products> {
-    return this._httpClient.post<Products>(this.API_URL, product)
+  createProduct(product: Product): Observable<Product> {
+    return this._httpClient.post<Product>(`${API_URL}/products`, product)
       .pipe(
         tap((response) => {
           const products = this._products.getValue()
@@ -43,8 +38,8 @@ export class InventaryService {
       )
   }
 
-  updateProduct(product: Products): Observable<Products> {
-    return this._httpClient.patch<Products>(`${this.API_URL}/${product.id}`, product)
+  updateProduct(product: Product): Observable<Product> {
+    return this._httpClient.patch<Product>(`${API_URL}/products/${product.id}`, product)
       .pipe(
         tap((response) => {
           const products = this._products.getValue()
@@ -55,8 +50,8 @@ export class InventaryService {
       )
   }
 
-  deleteProduct(id: number): Observable<Products> {
-    return this._httpClient.delete<Products>(`${this.API_URL}/${id}`)
+  deleteProduct(id: number): Observable<Product> {
+    return this._httpClient.delete<Product>(`${API_URL}/products/${id}`)
       .pipe(
         tap((response) => {
           const products = this._products.getValue()

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Products, ProductsResponse, ResponsiveOptions } from '../app.types';
-import { AppService } from '../app.service';
+import { Product, ResponsiveOptions } from '../../../core/config/types';
+import { AppService } from '../customer.service';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +9,11 @@ import { AppService } from '../app.service';
 })
 export class HomeComponent {
   responsiveOptions: ResponsiveOptions[] = [];
-  products: Products[] = [];
+  products: Product[] = [];
   constructor(private _appService: AppService) { }
   ngOnInit(): void {
 
-    this._appService.products$.subscribe((products: Products[]) => {
+    this._appService.products$.subscribe((products: Product[]) => {
       this.products = products;
     });
 

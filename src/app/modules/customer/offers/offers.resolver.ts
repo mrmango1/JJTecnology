@@ -6,18 +6,18 @@ import {
   RouterStateSnapshot,
 } from '@angular/router'
 import { catchError, Observable, throwError } from 'rxjs'
-import { InventaryService } from './inventary.service'
-import { Products } from '../app.types';
+import { AppService } from '../customer.service';
+import { Product } from '../../../core/config/types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class InventaryResolver implements Resolve<any> {
+export class OffersResolver implements Resolve<any> {
   /**
    * Constructor
    */
   constructor(
-    private _inventaryService: InventaryService,
+    private _appService: AppService,
     private _router: Router
   ) {}
 
@@ -34,9 +34,9 @@ export class InventaryResolver implements Resolve<any> {
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<Products[]> {
-      return this._inventaryService
-      .getProducts()
+  ): Observable<Product[]> {
+      return this._appService
+      .getProductsByCategory("smartphones")
       .pipe(
         catchError(error => {
           console.error(error)

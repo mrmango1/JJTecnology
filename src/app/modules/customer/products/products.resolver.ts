@@ -6,13 +6,13 @@ import {
   RouterStateSnapshot,
 } from '@angular/router'
 import { catchError, Observable, throwError } from 'rxjs'
-import { AppService } from '../app.service';
-import { ProductsResponse } from '../app.types';
+import { AppService } from '../customer.service';
+import { Product } from '../../../core/config/types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HomeResolver implements Resolve<any> {
+export class ProductsResolver implements Resolve<any> {
   /**
    * Constructor
    */
@@ -34,9 +34,23 @@ export class HomeResolver implements Resolve<any> {
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable< ProductsResponse > {
+  ): Observable<Product[]> {
+    const type = Number(route.paramMap.get('type'))
+    if(isNaN(type)){
       return this._appService
-      .getProducts()
+      .getProductsByCategory(route.paramMap.get('type') ?? 'laptops')
+      .pipe(
+        catchError(error => {
+          console.error(error)
+          const parentUrl = state.url.split('/').slice(0, -1).join('/')
+          this._router.navigateByUrl(parentUrl)
+          return throwError(error)
+        }
+        )
+      )
+    }else {
+      return this._appService
+      .getProducts(type)
       .pipe(
         catchError(error => {
           console.error(error)
@@ -45,5 +59,6 @@ export class HomeResolver implements Resolve<any> {
           return throwError(error)
         })
       )
+    }
   }
 }

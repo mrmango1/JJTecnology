@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { InventaryService } from './inventary.service';
-import { Products } from '../app.types';
+import { Product } from 'src/app/core/config/types';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,9 +11,9 @@ import { Observable } from 'rxjs';
 export class InventaryComponent {
   visible: boolean = false;
   create: boolean = false;
-  products$: Observable<Products[]> = this._inventaryService.products$;
-  products: Products[] = [];
-  tempProduct: Products = {
+  products$: Observable<Product[]> = this._inventaryService.products$;
+  products: Product[] = [];
+  tempProduct: Product = {
     id: 0,
     title: '',
     description: '',
@@ -28,7 +28,7 @@ export class InventaryComponent {
   }
   constructor(private _inventaryService: InventaryService) { }
   ngOnInit(): void {
-    this._inventaryService.products$.subscribe((products: Products[]) => {
+    this._inventaryService.products$.subscribe((products: Product[]) => {
       this.products = products;
     }
     );
@@ -53,7 +53,7 @@ export class InventaryComponent {
     this.visible = false;
   }
 
-  deleteProduct(product: Products) {
+  deleteProduct(product: Product) {
     this._inventaryService.deleteProduct(product.id).subscribe((response) => {
       this.refreshData();
     });
@@ -85,7 +85,7 @@ export class InventaryComponent {
     }
   }
 
-  showDialog(product: Products = { id: 0, title: '', description: '', price: 0, discountPercentage: 0, rating: 0, stock: 0, brand: '', category: '', thumbnail: '', images: [] }) {
+  showDialog(product: Product = { id: 0, title: '', description: '', price: 0, discountPercentage: 0, rating: 0, stock: 0, brand: '', category: '', thumbnail: '', images: [] }) {
     this.tempProduct = product
     this.visible = true;
     if(product.id === 0){

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AppService } from '../app.service';
-import { Products as Product } from '../app.types';
+import { AppService } from '../customer.service';
+import { Product } from '../../../core/config/types';
 import { Observable } from 'rxjs';
 
 @Component({
