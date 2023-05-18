@@ -25,6 +25,7 @@ import { ToastModule } from 'primeng/toast';
 
 // Components
 import { InventaryComponent } from './inventary/inventary.component';
+import { UsersComponent } from './users/users.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 
@@ -32,6 +33,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   declarations: [
     AdminComponent,
     InventaryComponent,
+    UsersComponent,
     NavbarComponent
   ],
   imports: [

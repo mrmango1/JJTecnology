@@ -41,7 +41,7 @@ export class LoginComponent {
       () => {
         const redirectURL =
           this._activatedRoute.snapshot.queryParamMap.get('redirectURL') ||
-          '/inventary'
+          '/admin/inventary'
         this._router.navigateByUrl(redirectURL)
         this._messageService.add({ severity: 'success', summary: 'Logeado', detail: 'Logeado exitosamente' });
       },

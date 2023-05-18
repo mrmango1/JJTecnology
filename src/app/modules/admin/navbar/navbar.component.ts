@@ -22,13 +22,13 @@ export class NavbarComponent implements OnInit {
         {
             label: 'Mantenimiento de Productos',
             icon: 'pi pi-fw pi-book',
-            routerLink: '/inventary'
+            routerLink: '/admin/inventary'
         },
-        // {
-        //     label: 'Mantenimiento de Usuarios',
-        //     icon: 'pi pi-fw pi-user',
-        //     routerLink: '/users',
-        // }
+        {
+            label: 'Mantenimiento de Usuarios',
+            icon: 'pi pi-fw pi-user',
+            routerLink: '/admin/users',
+        }
     ];
 }
 

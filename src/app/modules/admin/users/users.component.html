@@ -1,0 +1,69 @@
+<div class="card">
+  <p-table [value]="users" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Products
+        <p-button (click)="showDialog()" icon="pi pni-external-lik" label="Crear"></p-button>
+        <p-button (click)="refreshData()" icon="pi pi-refresh"></p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Edad</th>
+        <th>Email</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{user.firstname}}</td>
+        <td>{{user.lastname}}</td>
+        <td>{{user.age}} años</td>
+        <td>{{user.email}}</td>
+        <td>
+          <p-button (click)="deleteUser(user)" styleClass="p-button-danger" icon="pi pni-trash"
+            label="Eliminar"></p-button>
+          <p-button (click)="showDialog(user)" styleClass="p-button-success" icon="pi pni-external-lik"
+            label="Actualizar"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        Hay un total de {{users ? users.length : 0 }} usuarios.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog header="Mantenimiento Usuario" [(visible)]="visible" [modal]="true" [style]="{ width: '45vw' }"
+  [draggable]="false" [resizable]="false">
+  <div class="flex flex-column gap-4 pt-4 justify-content-center">
+    <span class="p-float-label align-self-center">
+      <input type="text" placeholder='Nombre' pInputText [(ngModel)]="tempUser.firstname" />
+      <label>Nombre</label>
+    </span>
+    <span class="p-float-label align-self-center">
+      <textarea type="text" placeholder='Apellido' pInputText [(ngModel)]="tempUser.lastname"></textarea>
+      <label>Apellido</label>
+    </span>
+    <span class="p-float-label align-self-center">
+      <p-inputNumber  placeholder='Edad'  [(ngModel)]="tempUser.age" ></p-inputNumber>
+      <label>Edad</label>
+    </span>
+    <span class="p-float-label align-self-center">
+      <textarea type="text" placeholder='Email' pInputText [(ngModel)]="tempUser.email"></textarea>
+      <label>Email</label>
+    </span>
+    <span class="p-float-label align-self-center">
+      <textarea type="text" placeholder='Contraseña' pInputText [(ngModel)]="tempUser.password"></textarea>
+      <label>Contraseña</label>
+    </span>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancel" (click)="visible = false" styleClass="p-button-danger"></p-button>
+    <p-button label="Ok" (click)="action()" styleClass="p-button-success"></p-button>
+  </ng-template>
+</p-dialog>

@@ -34,7 +34,7 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     component: AdminComponent,
     children: [
-      { path: 'inventary', loadChildren: () => import('src/app/modules/admin/admin.module').then(m => m.AdminModule) },
+      { path: 'admin', loadChildren: () => import('src/app/modules/admin/admin.module').then(m => m.AdminModule) },
     ]
   },
   { path: 'notfound', component: NotfoundComponent },
