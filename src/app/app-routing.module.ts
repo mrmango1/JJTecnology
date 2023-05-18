@@ -19,8 +19,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    canActivate: [NoAuthGuard],
-    canActivateChild: [NoAuthGuard],
+    // canActivate: [NoAuthGuard],
+    // canActivateChild: [NoAuthGuard],
     component: CustomerComponent,
     children: [
       {
