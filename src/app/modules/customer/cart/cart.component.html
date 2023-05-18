@@ -1,0 +1,43 @@
+<p class="text-center text-3xl">Carrito de Compras</p>
+<div class="card">
+  <p-table [value]="shoppingCart.products" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Carrito
+        <div>
+          <p-toast></p-toast>
+          <p-confirmPopup></p-confirmPopup>
+          <p-button *ngIf="shoppingCart.totalItems > 0" (click)="confirm($event)" icon="pi pi-check-circle"></p-button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nombre</th>
+        <th>Imagen</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{product.name}}</td>
+        <td><img [src]="product.image" [alt]="product.title" width="100" class="shadow-4" /></td>
+        <td>{{product.price | currency:'USD'}}</td>
+        <td>{{product.quantity}}</td>
+        <td>
+          <p-button (click)="removeProductFromCart(product)" styleClass="p-button-danger" icon="pi pni-trash"
+            label="Eliminar"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        Hay un total de {{shoppingCart.totalItems ? shoppingCart.products.length : 0 }} productos, el precio total es de
+        {{shoppingCart.totalPrice | currency:'USD'}}
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+<p-toast></p-toast>

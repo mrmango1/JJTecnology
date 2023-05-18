@@ -7,6 +7,7 @@ import { ContactComponent } from 'src/app/modules/customer/contact/contact.compo
 import { ProductsResolver } from 'src/app/modules/customer/products/products.resolver';
 import { HomeResolver } from 'src/app/modules/customer/home/home.resolver';
 import { OffersResolver } from 'src/app/modules/customer/offers/offers.resolver';
+import { CartComponent } from './cart/cart.component';
 
 export const customerRoutes: Routes = [
   {
@@ -38,4 +39,5 @@ export const customerRoutes: Routes = [
   },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'cart', component: CartComponent },
 ];

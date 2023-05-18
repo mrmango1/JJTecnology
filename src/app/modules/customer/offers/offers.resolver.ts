@@ -6,7 +6,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router'
 import { catchError, Observable, throwError } from 'rxjs'
-import { AppService } from '../customer.service';
+import { CustomerService } from '../customer.service';
 import { Product } from '../../../core/config/types';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class OffersResolver implements Resolve<any> {
    * Constructor
    */
   constructor(
-    private _appService: AppService,
+    private _appService: CustomerService,
     private _router: Router
   ) {}
 

@@ -9,12 +9,13 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Price</th>
-        <th>Category</th>
-        <th>Reviews</th>
-        <th>Status</th>
+        <th>Nombre</th>
+        <th>Imagen</th>
+        <th>Precio</th>
+        <th>Categoría</th>
+        <th>Porcentaje de Descuento</th>
+        <th>Marca</th>
+        <th>Cantidad</th>
         <th>Actions</th>
       </tr>
     </ng-template>
@@ -24,8 +25,9 @@
         <td><img [src]="product.images[0]" [alt]="product.title" width="100" class="shadow-4" /></td>
         <td>{{product.price | currency:'USD'}}</td>
         <td>{{product.category}}</td>
-        <td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
-        <td><p-tag [value]="getStatus(product.price)" [severity]="getSeverity(product.price)"></p-tag></td>
+        <td>{{product.discountPercentage}}%</td>
+        <td>{{product.brand}}</td>
+        <td>{{product.stock}} und</td>
         <td>
           <p-button (click)="deleteProduct(product)" styleClass="p-button-danger" icon="pi pni-trash"
             label="Eliminar"></p-button>
@@ -36,7 +38,7 @@
     </ng-template>
     <ng-template pTemplate="summary">
       <div class="flex align-items-center justify-content-between">
-        In total there are {{products ? products.length : 0 }} products.
+        Hay un total de {{products ? products.length : 0 }} productos.
       </div>
     </ng-template>
   </p-table>

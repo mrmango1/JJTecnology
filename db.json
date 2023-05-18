@@ -9,31 +9,23 @@
       "id": 1
     }
   ],
-  "cart": [
+  "shoppingCart": [
     {
       "id": 1,
       "userId": 1,
+      "totalItems": 2,
+      "totalPrice": 2049,
       "products": [
         {
           "id": 1,
+          "name": "iPhone X",
+          "price": 549,
           "quantity": 1
         },
         {
           "id": 2,
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "userId": 2,
-      "products": [
-        {
-          "id": 1,
-          "quantity": 1
-        },
-        {
-          "id": 2,
+          "name": "MacBook Pro",
+          "price": 1500,
           "quantity": 1
         }
       ]
@@ -47,7 +39,7 @@
       "price": 549,
       "discountPercentage": 12.96,
       "rating": 4.69,
-      "stock": "4",
+      "stock": 429,
       "brand": "Apple",
       "category": "smartphones",
       "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
@@ -66,7 +58,7 @@
       "price": 899,
       "discountPercentage": 17.94,
       "rating": 4.44,
-      "stock": 34,
+      "stock": 212,
       "brand": "Apple",
       "category": "smartphones",
       "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",

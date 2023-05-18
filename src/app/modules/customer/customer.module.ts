@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CustomerComponent } from 'src/app/modules/customer/customer.component';
 import { customerRoutes } from './customer.routing';
@@ -20,6 +21,8 @@ import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 import { MenubarModule } from 'primeng/menubar';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 
 // Components
@@ -29,6 +32,7 @@ import { ProductsComponent } from './products/products.component';
 import { OffersComponent } from './offers/offers.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -39,7 +43,8 @@ import { ContactComponent } from './contact/contact.component';
     ProductsComponent,
     OffersComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    CartComponent
   ],
   imports: [
     RouterModule.forChild(customerRoutes),
@@ -59,6 +64,9 @@ import { ContactComponent } from './contact/contact.component';
     CarouselModule,
     TagModule,
     LeafletModule,
+    FormsModule,
+    ToastModule,
+    ConfirmPopupModule
   ],
   exports: [CustomerComponent]
 })

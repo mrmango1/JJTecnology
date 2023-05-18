@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Product, ResponsiveOptions } from '../../../core/config/types';
-import { AppService } from '../customer.service';
+import { CustomerService } from '../customer.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,7 @@ import { AppService } from '../customer.service';
 export class HomeComponent {
   responsiveOptions: ResponsiveOptions[] = [];
   products: Product[] = [];
-  constructor(private _appService: AppService) { }
+  constructor(private _appService: CustomerService) { }
   ngOnInit(): void {
 
     this._appService.products$.subscribe((products: Product[]) => {
@@ -61,4 +61,9 @@ export class HomeComponent {
         return 'Sin stock';
     }
   }
+
+  addProductToCart(product: Product) {
+    this._appService.addProductToCart(product);
+  }
+
 }

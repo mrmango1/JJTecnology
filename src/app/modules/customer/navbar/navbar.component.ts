@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api/menuitem';
+import { CustomerService } from '../customer.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +9,12 @@ import { MenuItem } from 'primeng/api/menuitem';
 })
 export class NavbarComponent implements OnInit {
   items: MenuItem[] = [];
-
+  cartItemsCount: string = '';
+  constructor(private _customerService: CustomerService) { }
   ngOnInit() {
+    this._customerService.shoppingCart$.subscribe((shoppingCart: any) => {
+      this.cartItemsCount = `Carrito (${shoppingCart.totalItems ?? 0})`;
+    });
     this.items = [
         {
             label: 'Inicio',
