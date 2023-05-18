@@ -5,18 +5,9 @@ import { InventaryResolver } from 'src/app/modules/admin/inventary/inventary.res
 export const adminRoutes: Routes = [
   {
     path: '',
-    canActivate: [],
-    canActivateChild: [],
     component: InventaryComponent,
-    data: { title: 'Home' },
-    children: [
-      {
-        path: 'inventory',
-        component: InventaryComponent,
-        resolve: {
-          inventaryResolver: InventaryResolver
-        },
-      }
-    ]
+    resolve: {
+      inventaryResolver: InventaryResolver
+    },
   },
 ];

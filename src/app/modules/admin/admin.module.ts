@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { AdminComponent } from './admin.component';
+import { adminRoutes } from './admin.routing';
+
 
 // PrimeNG Components
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,27 +17,25 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
 import { ToolbarModule } from 'primeng/toolbar';
-import { ConfirmationService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 import { MenubarModule } from 'primeng/menubar';
+import { ToastModule } from 'primeng/toast';
 
 // Components
-import { adminRoutes } from './admin.routing';
-import { RouterModule } from '@angular/router';
-import { AdminComponent } from './admin.component';
+import { InventaryComponent } from './inventary/inventary.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AdminComponent,
+    InventaryComponent,
+    NavbarComponent
   ],
   imports: [
     RouterModule.forChild(adminRoutes),
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
     InputTextModule,
     InputTextareaModule,
     InputNumberModule,
@@ -53,8 +51,8 @@ import { AdminComponent } from './admin.component';
     CardModule,
     CarouselModule,
     TagModule,
-    LeafletModule,
-    BrowserAnimationsModule
+    FormsModule,
+    ToastModule
   ],
   exports: [AdminComponent]
 })

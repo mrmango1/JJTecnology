@@ -45,12 +45,12 @@ export class AuthService {
     })
   }
 
-  signIn(credentials: { email: string; password: string }): Observable<any> {
+  signIn(credentials: User): Observable<any> {
     if (this._authenticated) {
       return throwError('User is already logged in.')
     }
     return this._httpClient
-      .post(API_URL + '/backend/user/login', credentials)
+      .post(API_URL + '/login', credentials)
       .pipe(
         switchMap((response: any) => {
           this.accessToken = response.accessToken
@@ -62,21 +62,10 @@ export class AuthService {
   }
 
   signInUsingToken(): Observable<any> {
-    return this._httpClient
-      .post(API_URL + '/backend/user/login', {
-        accessToken: this.accessToken,
-      })
-      .pipe(
-        catchError(() =>
-          of(false)
-        ),
-        switchMap((response: any) => {
-          this.accessToken = response.accessToken
-          this._authenticated = true
-          this._user.next(response.user)
-          return of(true)
-        })
-      )
+    this.accessToken = this.accessToken
+    this._authenticated = true
+    // this._user.next(response.user)
+    return of(true)
   }
 
   signOut(): Observable<any> {

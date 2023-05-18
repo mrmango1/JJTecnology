@@ -1,18 +1,42 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Anderson Grefa",
       "email": "andersongrefa@gmail.com",
-      "password": "123456",
-      "role": "admin"
+      "password": "$2a$10$UYeIKTR1W6dndPGQuxEl9u9bTOAPZbnUEH4Osih/0I4.vkPUjpX6a",
+      "firstname": "Anderson",
+      "lastname": "Grefa",
+      "age": 23,
+      "id": 1
+    }
+  ],
+  "cart": [
+    {
+      "id": 1,
+      "userId": 1,
+      "products": [
+        {
+          "id": 1,
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": 2,
-      "name": "John Doe",
-      "email": "jhondoe@gmail.com",
-      "password": "123456",
-      "role": "user"
+      "userId": 2,
+      "products": [
+        {
+          "id": 1,
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "quantity": 1
+        }
+      ]
     }
   ],
   "products": [

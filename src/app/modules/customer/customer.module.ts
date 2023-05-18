@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { RouterModule } from '@angular/router';
 import { CustomerComponent } from 'src/app/modules/customer/customer.component';
+import { customerRoutes } from './customer.routing';
 
 // PrimeNG Components
 import { InputTextModule } from 'primeng/inputtext';
@@ -15,7 +16,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
 import { ToolbarModule } from 'primeng/toolbar';
-import { ConfirmationService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
@@ -23,7 +23,6 @@ import { MenubarModule } from 'primeng/menubar';
 
 
 // Components
-import { customerRoutes } from './customer.routing';
 import { NavbarComponent } from 'src/app/modules/customer/navbar/navbar.component';
 import { HomeComponent } from 'src/app/modules/customer/home/home.component';
 import { ProductsComponent } from './products/products.component';

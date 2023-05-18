@@ -56,11 +56,6 @@ export class NavbarComponent implements OnInit {
           label: 'Contacto',
           icon: 'pi pi-fw pi-building',
           routerLink: '/contact',
-      },
-        {
-          label: 'Inventory',
-          icon: 'pi pi-fw pi-book',
-          routerLink: '/inventory',
       }
     ];
 }
