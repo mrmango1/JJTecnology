@@ -9,14 +9,17 @@ import { Observable } from 'rxjs';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
-  products$: Observable<Product[]> = this._appService.products$;
+  products$: Observable<Product[]> = this._customerService.products$;
   products: Product[] = [];
-  constructor(private _appService: CustomerService) { }
+  constructor(private _customerService: CustomerService) { }
   ngOnInit(): void {
-
-    this._appService.products$.subscribe((products: Product[]) => {
+    this._customerService.products$.subscribe((products: Product[]) => {
       this.products = products;
     }
     );
+  }
+
+  addProductToCart(product: Product) {
+    this._customerService.addProductToCart(product);
   }
 }
