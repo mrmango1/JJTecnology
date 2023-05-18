@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product, ResponsiveOptions, ShoppingCart } from '../../../core/config/types';
+import { Product, ShoppingCart } from '../../../core/config/types';
 import { CustomerService } from '../customer.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -10,7 +10,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   providers: [ConfirmationService, MessageService]
 })
 export class CartComponent {
-  responsiveOptions: ResponsiveOptions[] = [];
   shoppingCart!: ShoppingCart
 
   constructor(
@@ -25,12 +24,9 @@ export class CartComponent {
   ngOnInit(): void {
   }
 
-  addProductToCart(product: Product) {
-    this._customerService.addProductToCart(product);
-  }
-
   removeProductFromCart(product: Product) {
     this._customerService.removeProductFromCart(product);
+    this._messageService.add({ severity: 'error', summary: 'Eliminado', detail: 'Producto eliminado del carrito' });
   }
 
   makePurchase() {
@@ -43,7 +39,7 @@ export class CartComponent {
         message: 'Esta seguro que desea continuar con la compra?',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this._messageService.add({ severity: 'info', summary: 'Exitosa', detail: 'Compra realizada' });
+            this._messageService.add({ severity: 'success', summary: 'Exitosa', detail: 'Compra realizada' });
             this.makePurchase();
         },
         reject: () => {

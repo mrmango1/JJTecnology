@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
 import { Product, ResponsiveOptions } from '../../../core/config/types';
 import { CustomerService } from '../customer.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [MessageService]
 })
 export class HomeComponent {
   responsiveOptions: ResponsiveOptions[] = [];
   products: Product[] = [];
-  constructor(private _customerService: CustomerService) { }
+  constructor(
+    private _customerService: CustomerService,
+    private _messageService: MessageService
+    ) { }
   ngOnInit(): void {
 
     this._customerService.products$.subscribe((products: Product[]) => {
@@ -64,6 +69,7 @@ export class HomeComponent {
 
   addProductToCart(product: Product) {
     this._customerService.addProductToCart(product);
+    this._messageService.add({ severity: 'success', summary: 'Agregado', detail: 'Producto agregado al carrito' });
   }
 
 }
