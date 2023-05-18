@@ -83,13 +83,6 @@ export class AuthService {
     return this._httpClient.post('api/auth/sign-up', user)
   }
 
-  unlockSession(credentials: {
-    email: string
-    password: string
-  }): Observable<any> {
-    return this._httpClient.post('api/auth/unlock-session', credentials)
-  }
-
   check(): Observable<boolean> {
     if (this._authenticated) {
       return of(true)

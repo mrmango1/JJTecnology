@@ -78,31 +78,22 @@ export class AuthUtils {
   }
 
   private static _decodeToken(token: string): any {
-    // Return if there is no token
-
     if (token === undefined) {
-
       return null
     }
     if (!token) {
-
       return null
     }
-
     const parts = token.split('.')
-
     if (parts.length !== 3) {
       return null
       throw new Error('The inspected token doesn\'t appear to be a JWT. Check to make sure it has three parts and see https://jwt.io for more.')
     }
-
     const decoded = this._urlBase64Decode(parts[1])
-
     if (!decoded) {
       return null
       throw new Error('Cannot decode the token.')
     }
-
     return JSON.parse(decoded)
   }
 
